@@ -30,11 +30,12 @@ rails server
 - **Agent Support**: Contextual guidance for MCP agents
 - **Technical Instructions**: Step-by-step crafting guides
 
-## 🔗 MCP Tools
+## 🔗 MCP Server Endpoints
 
-Access the MCP server at:
-- **Tools List**: `GET /mcp/tools/list`
-- **Tool Execution**: `POST /mcp/tools/call`
+**Server runs on port 3000** (Rails standard):
+- **Tools List**: `GET http://localhost:3000/mcp/tools/list`
+- **Tool Execution**: `POST http://localhost:3000/mcp/tools/call`
+- **Health Check**: `GET http://localhost:3000/up`
 
 ## 📚 Documentation
 
@@ -61,11 +62,12 @@ curl -X POST http://localhost:3000/mcp/tools/call \
   -d '{"name": "search_products", "arguments": {"fiber_type": "cotton", "query": "dye"}}'
 ```
 
-## 🔧 Tech Stack
+## 🔧 Tech Stack & Configuration
 
-- **Backend**: Ruby on Rails 7.2 (API mode)
-- **Database**: MySQL 8.0 with utf8mb4 encoding
-- **Deployment**: Docker + Docker Compose + Nginx
-- **Development**: DevContainer support
+- **Backend**: Ruby on Rails 7.2 (API mode) on **port 3000**
+- **Database**: MySQL 8.0 with utf8mb4 encoding on port 3306
+- **Production**: Nginx reverse proxy (ports 80/443) → Rails (3000)
+- **Deployment**: Docker + Docker Compose + SSL with Certbot
+- **Development**: DevContainer with VS Code integration
 
 Perfect for deployment on AWS EC2 Ubuntu containers!
