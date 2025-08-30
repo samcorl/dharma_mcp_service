@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_idea: one
+  product: one
+  quantity_needed: 9.99
+  notes: MyString
+
+two:
+  project_idea: two
+  product: two
+  quantity_needed: 9.99
+  notes: MyString

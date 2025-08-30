@@ -1,0 +1,115 @@
+{
+  "name": "Dharma MCP Service - Ruby Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Ruby Development
+        "rebornix.ruby",
+        "kaiwood.endwise",
+        "aki77.rails-routes",
+        "bung87.rails",
+        "misogi.ruby-rubocop",
+        
+        // General Development
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss", 
+        "esbenp.prettier-vscode",
+        "ms-vscode.hexeditor",
+        "streetsidesoftware.code-spell-checker",
+        
+        // Database
+        "cweijan.vscode-mysql-client2",
+        
+        // Git and GitHub
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        
+        // Docker
+        "ms-azuretools.vscode-docker",
+        
+        // HTTP Testing
+        "humao.rest-client"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          }
+        },
+        
+        // Ruby Settings
+        "ruby.intellisense": "rubyLanguageServer",
+        "ruby.format": "rubocop",
+        "ruby.lint": {
+          "rubocop": true
+        },
+        "ruby.codeCompletion": "rcodetools",
+        
+        // File Associations
+        "files.associations": {
+          "*.rb": "ruby",
+          "Gemfile": "ruby",
+          "Rakefile": "ruby",
+          "*.rake": "ruby",
+          "*.ru": "ruby"
+        },
+        
+        // Editor Settings
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.rulers": [80],
+        "editor.formatOnSave": true,
+        
+        // JSON Settings
+        "json.format.enable": true,
+        
+        // MySQL Connection for VS Code
+        "mysql.connections": [
+          {
+            "host": "db",
+            "port": 3306,
+            "user": "dharma_user",
+            "password": "password",
+            "database": "dharma_mcp_development",
+            "name": "Dharma MCP DB"
+          }
+        ]
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 3306],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "notify"
+    },
+    "3306": {
+      "label": "MySQL Database",
+      "onAutoForward": "ignore"
+    }
+  },
+
+  "postCreateCommand": ".devcontainer/setup.sh",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+
+  "remoteUser": "vscode",
+  
+  "mounts": [
+    "source=dharma-mcp-bundle,target=/usr/local/bundle,type=volume"
+  ]
+}

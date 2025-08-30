@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  primary_product: one
+  recommended_product: one
+  recommendation_type: MyString
+  confidence_score: 9.99
+  display_order: 1
+  active: false
+
+two:
+  primary_product: two
+  recommended_product: two
+  recommendation_type: MyString
+  confidence_score: 9.99
+  display_order: 1
+  active: false

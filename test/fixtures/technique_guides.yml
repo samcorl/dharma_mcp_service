@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  technique_type: MyString
+  difficulty_level: MyString
+  description: MyText
+  instructions: MyText
+  tools_needed: MyText
+  time_estimate: 1
+  video_url: MyString
+  images: MyText
+  active: false
+
+two:
+  title: MyString
+  technique_type: MyString
+  difficulty_level: MyString
+  description: MyText
+  instructions: MyText
+  tools_needed: MyText
+  time_estimate: 1
+  video_url: MyString
+  images: MyText
+  active: false

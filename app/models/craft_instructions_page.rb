@@ -1,0 +1,2 @@
+class CraftInstructionsPage < ApplicationRecord
+end

@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 9.99
+  sku: MyString
+  weight: 9.99
+  dimensions: MyString
+  availability: false
+  product_family: one
+  product_category: one
+  available_colors: MyText
+  available_sizes: MyText
+  fiber_content: MyString
+  weight_category: MyString
+  yardage: 1
+  care_instructions: MyText
+  skill_level_required: MyString
+  compatible_techniques: MyText
+  recommended_for: MyText
+  use_on: MyText
+
+two:
+  name: MyString
+  description: MyText
+  price: 9.99
+  sku: MyString
+  weight: 9.99
+  dimensions: MyString
+  availability: false
+  product_family: two
+  product_category: two
+  available_colors: MyText
+  available_sizes: MyText
+  fiber_content: MyString
+  weight_category: MyString
+  yardage: 1
+  care_instructions: MyText
+  skill_level_required: MyString
+  compatible_techniques: MyText
+  recommended_for: MyText
+  use_on: MyText

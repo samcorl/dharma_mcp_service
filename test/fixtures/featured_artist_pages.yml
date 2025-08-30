@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist_name: MyString
+  bio: MyText
+  featured_image: MyString
+  portfolio_images: MyText
+  social_links: MyText
+  featured_until: 2025-08-29 18:05:37
+  active: false
+
+two:
+  artist_name: MyString
+  bio: MyText
+  featured_image: MyString
+  portfolio_images: MyText
+  social_links: MyText
+  featured_until: 2025-08-29 18:05:37
+  active: false

@@ -1,0 +1,2 @@
+class TechniqueGuide < ApplicationRecord
+end
