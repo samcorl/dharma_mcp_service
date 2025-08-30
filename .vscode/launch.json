@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Rails Server",
+            "type": "Ruby",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/rails",
+            "args": ["server"],
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "RAILS_ENV": "development"
+            }
+        },
+        {
+            "name": "Debug Rails Console",
+            "type": "Ruby", 
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/rails",
+            "args": ["console"],
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "RAILS_ENV": "development"
+            }
+        }
+    ]
+}

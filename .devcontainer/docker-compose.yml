@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    container_name: "Dharma-MCP"
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
@@ -9,10 +10,12 @@ services:
       - ../..:/workspaces:cached
     command: sleep infinity
     ports:
-      - "3000:3000"
+      - "8080:3000"
     environment:
       - RAILS_ENV=development
       - BUNDLE_PATH=/usr/local/bundle
+      - DATABASE_HOST=db
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     depends_on:
       - db
 
@@ -26,8 +29,6 @@ services:
       MYSQL_DATABASE: dharma_mcp_development
       MYSQL_USER: dharma_user
       MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
 
 volumes:
   mysql-data:

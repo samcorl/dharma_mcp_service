@@ -91,6 +91,45 @@ setup_database() {
     print_success "Database setup complete!"
 }
 
+# Function to setup Claude Code
+setup_claude_code() {
+    print_status "Setting up Claude Code configuration..."
+    
+    # Ensure Claude Code config directory exists with proper permissions
+    mkdir -p /home/vscode/.config/claude-code
+    chown -R vscode:vscode /home/vscode/.config/claude-code
+    
+    # Create Claude Code settings if they don't exist
+    if [ ! -f /home/vscode/.config/claude-code/settings.json ]; then
+        cat > /home/vscode/.config/claude-code/settings.json << 'EOF'
+{
+  "workspaceSettings": {
+    "alwaysAllowReadWorkspace": true,
+    "enableShellCommands": true,
+    "enableFileOperations": true
+  },
+  "defaultModel": "claude-3-5-sonnet-20241022",
+  "maxTokens": 8192
+}
+EOF
+        chown vscode:vscode /home/vscode/.config/claude-code/settings.json
+        print_success "Created Claude Code settings file"
+    else
+        print_status "Claude Code settings already exist"
+    fi
+    
+    # Set up Claude Code auth if API key is available
+    if [ ! -z "$ANTHROPIC_API_KEY" ]; then
+        print_status "ANTHROPIC_API_KEY found, configuring authentication..."
+        su -c "echo '$ANTHROPIC_API_KEY' | claude-code auth" vscode
+        print_success "Claude Code authentication configured"
+    else
+        print_warning "ANTHROPIC_API_KEY not set. You'll need to run 'claude-code auth' manually"
+    fi
+    
+    print_success "Claude Code setup complete!"
+}
+
 # Function to create helpful files for beginners
 create_helper_files() {
     print_status "Creating helpful files for Ruby beginners..."
@@ -380,6 +419,7 @@ show_startup_info() {
     echo "   • rails db:migrate     - Apply database changes"
     echo "   • rails db:console     - Database console"
     echo "   • bundle install       - Install gems"
+    echo "   • claude-code          - Start Claude Code CLI"
     echo ""
     echo "📡 MCP Tools available:"
     echo "   • search_products      - Find products by fiber, skill level"
@@ -402,6 +442,9 @@ main() {
     
     # Setup database
     setup_database
+    
+    # Setup Claude Code
+    setup_claude_code
     
     # Create helper files
     create_helper_files

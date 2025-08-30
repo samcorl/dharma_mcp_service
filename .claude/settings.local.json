@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(rm:*)",
+      "Bash(git add:*)",
+      "Bash(./scaffold.sh)",
+      "Bash(rails new:*)",
+      "Bash(rails:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(docker build:*)",
+      "Bash(bundle:*)",
+      "Bash(docker compose:*)",
+      "Bash(curl:*)",
+      "Bash(bin/rails:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "/workspaces"
+    ]
+  }
+}

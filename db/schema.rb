@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
-  create_table "agent_guidances", force: :cascade do |t|
+  create_table "agent_guidances", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "context_type"
     t.string "category"
     t.text "conditions"
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "craft_instructions_pages", force: :cascade do |t|
+  create_table "craft_instructions_pages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "difficulty_level"
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "featured_artist_pages", force: :cascade do |t|
+  create_table "featured_artist_pages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "artist_name"
     t.text "bio"
     t.string "featured_image"
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "frequently_asked_questions", force: :cascade do |t|
+  create_table "frequently_asked_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "question"
     t.text "answer"
     t.string "category"
@@ -57,11 +57,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_categories", force: :cascade do |t|
+  create_table "product_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "slug"
-    t.integer "parent_category_id"
+    t.bigint "parent_category_id"
     t.integer "display_order"
     t.boolean "active"
     t.datetime "created_at", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.index ["parent_category_id"], name: "index_product_categories_on_parent_category_id"
   end
 
-  create_table "product_families", force: :cascade do |t|
+  create_table "product_families", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "slug"
@@ -79,11 +79,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_recommendations", force: :cascade do |t|
-    t.integer "primary_product_id", null: false
-    t.integer "recommended_product_id", null: false
+  create_table "product_recommendations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "primary_product_id", null: false
+    t.bigint "recommended_product_id", null: false
     t.string "recommendation_type"
-    t.decimal "confidence_score"
+    t.decimal "confidence_score", precision: 10
     t.integer "display_order"
     t.boolean "active"
     t.datetime "created_at", null: false
@@ -92,11 +92,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.index ["recommended_product_id"], name: "index_product_recommendations_on_recommended_product_id"
   end
 
-  create_table "product_variant_lists", force: :cascade do |t|
-    t.integer "product_id", null: false
+  create_table "product_variant_lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "product_id", null: false
     t.string "variant_type"
     t.string "variant_value"
-    t.decimal "price_modifier"
+    t.decimal "price_modifier", precision: 10
     t.string "sku_suffix"
     t.boolean "available"
     t.string "color_name"
@@ -108,16 +108,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.index ["product_id"], name: "index_product_variant_lists_on_product_id"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.decimal "price"
+    t.decimal "price", precision: 10
     t.string "sku"
-    t.decimal "weight"
+    t.decimal "weight", precision: 10
     t.string "dimensions"
     t.boolean "availability"
-    t.integer "product_family_id", null: false
-    t.integer "product_category_id", null: false
+    t.bigint "product_family_id", null: false
+    t.bigint "product_category_id", null: false
     t.text "available_colors"
     t.text "available_sizes"
     t.string "fiber_content"
@@ -134,7 +134,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.index ["product_family_id"], name: "index_products_on_product_family_id"
   end
 
-  create_table "project_ideas", force: :cascade do |t|
+  create_table "project_ideas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "difficulty_level"
@@ -148,10 +148,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_products", force: :cascade do |t|
-    t.integer "project_idea_id", null: false
-    t.integer "product_id", null: false
-    t.decimal "quantity_needed"
+  create_table "project_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "project_idea_id", null: false
+    t.bigint "product_id", null: false
+    t.decimal "quantity_needed", precision: 10
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -159,7 +159,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.index ["project_idea_id"], name: "index_project_products_on_project_idea_id"
   end
 
-  create_table "support_articles", force: :cascade do |t|
+  create_table "support_articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "category"
@@ -171,7 +171,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "technique_guides", force: :cascade do |t|
+  create_table "technique_guides", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "technique_type"
     t.string "difficulty_level"
@@ -187,8 +187,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_30_010544) do
   end
 
   add_foreign_key "product_categories", "product_categories", column: "parent_category_id"
-  add_foreign_key "product_recommendations", "primary_products"
-  add_foreign_key "product_recommendations", "recommended_products"
+  add_foreign_key "product_recommendations", "products", column: "primary_product_id"
+  add_foreign_key "product_recommendations", "products", column: "recommended_product_id"
   add_foreign_key "product_variant_lists", "products"
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "product_families"
